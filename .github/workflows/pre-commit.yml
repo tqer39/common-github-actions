@@ -17,7 +17,7 @@ jobs:
 
       - name: Get Python version
         run: -|
-          echo "PYTHON_VERSION="$(grep python .python-versions cut -d ' ' -f1)"" >> $GITHUB_ENV
+          echo "PYTHON_VERSION="$(grep python .python-version cut -d ' ' -f1)"" >> $GITHUB_ENV
 
       - name: Setup Python
         uses: actions/setup-python@v3
