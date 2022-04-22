@@ -15,3 +15,4 @@ runs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ steps.get-python-version.outputs.PYTHON_VERSION }}
+        cache: pip
