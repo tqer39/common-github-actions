@@ -1,0 +1,16 @@
+---
+name: Actionlint action
+
+description: GitHub Actions Linter
+
+runs:
+  using: composite
+  steps:
+    - name: Download actionlint
+      id: get-actionlint
+      run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+      shell: bash
+
+    - name: Check workflow files
+      run: ${{ steps.get-actionlint.outputs.executable }} -color
+      shell: bash
