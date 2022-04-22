@@ -1,0 +1,17 @@
+---
+name: Setup python action
+
+description: Setup Python
+
+runs:
+  using: composite
+  steps:
+    - name: Get Python version (.python-version)
+      id: get-python-version
+      run: echo ::set-output name=PYTHON_VERSION::$(cat .python-version)
+      shell: bash
+
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ steps.get-python-version.outputs.PYTHON_VERSION }}
