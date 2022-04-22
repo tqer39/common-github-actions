@@ -1,0 +1,12 @@
+---
+name: pre-commit action
+
+description: pre-commit
+
+runs:
+  using: composite
+  steps:
+    - name: pre-commit
+      uses: pre-commit/action@v2.0.3
+      with:
+        extra_args: -a --show-diff-on-failure
