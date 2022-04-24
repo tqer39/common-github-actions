@@ -5,11 +5,14 @@ on:
   pull_request:
     types:
       - opened
+  issues:
+    types:
+      - opened
 
 jobs:
   assignAuthorPR:
     if: >-
-      github.event.issue.pull_request &&
+      github.event_name == 'pull_request' &&
       github.actor != 'renovate[bot]' &&
       github.actor != 'dependabot[bot]'
     name: Assign author to PR
@@ -18,10 +21,14 @@ jobs:
     steps:
       - name: Assign author to PR
         uses: technote-space/assign-author@v1
+      - run: |
+          echo "github.event_name: ${github.event_name}"
+          echo "github.event: ${github.event}"
+          echo "github.actor: ${github.actor}"
 
   assignAuthorIssue:
     if: >-
-      !github.event.issue.pull_request &&
+      github.event_name == 'issues' &&
       github.actor != 'renovate[bot]' &&
       github.actor != 'dependabot[bot]'
     name: Assign author to issue
@@ -30,3 +37,7 @@ jobs:
     steps:
       - name: Assign author to issue
         uses: technote-space/assign-author@v1
+      - run: |
+          echo "github.event_name: ${github.event_name}"
+          echo "github.event: ${github.event}"
+          echo "github.actor: ${github.actor}"
