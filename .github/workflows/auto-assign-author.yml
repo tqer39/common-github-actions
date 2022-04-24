@@ -10,34 +10,10 @@ on:
       - opened
 
 jobs:
-  assignAuthorPR:
-    if: >-
-      github.event_name == 'pull_request' &&
-      github.actor != 'renovate[bot]' &&
-      github.actor != 'dependabot[bot]'
-    name: Assign author to PR
+  assign-author:
+    name: Assign author
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - name: Assign author to PR
+      - name: Assign author
         uses: technote-space/assign-author@v1
-      - run: |
-          echo "github.event_name: ${github.event_name}"
-          echo "github.event: ${github.event}"
-          echo "github.actor: ${github.actor}"
-
-  assignAuthorIssue:
-    if: >-
-      github.event_name == 'issues' &&
-      github.actor != 'renovate[bot]' &&
-      github.actor != 'dependabot[bot]'
-    name: Assign author to issue
-    runs-on: ubuntu-latest
-    timeout-minutes: 2
-    steps:
-      - name: Assign author to issue
-        uses: technote-space/assign-author@v1
-      - run: |
-          echo "github.event_name: ${github.event_name}"
-          echo "github.event: ${github.event}"
-          echo "github.actor: ${github.actor}"
