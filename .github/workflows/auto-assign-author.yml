@@ -1,0 +1,32 @@
+---
+name: Auto Assign Author
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  assignAuthorPR:
+    if: >-
+      github.event.issue.pull_request &&
+      github.actor != 'renovate[bot]' &&
+      github.actor != 'dependabot[bot]'
+    name: Assign author to PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Assign author to PR
+        uses: technote-space/assign-author@v1
+
+  assignAuthorIssue:
+    if: >-
+      !github.event.issue.pull_request &&
+      github.actor != 'renovate[bot]' &&
+      github.actor != 'dependabot[bot]'
+    name: Assign author to issue
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Assign author to issue
+        uses: technote-space/assign-author@v1
