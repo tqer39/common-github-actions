@@ -1,0 +1,22 @@
+---
+name: test workflow_dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      env_name:
+        description: '環境名を入力して "run" してください'
+        default: ''
+        required: true
+    branches: [ master ]
+
+jobs:
+  github-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              body: '👋 Thanks for reporting! ' + ${{ inputs.env_name }}
+            })
