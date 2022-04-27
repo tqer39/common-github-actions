@@ -10,9 +10,9 @@ on:
         required: true
 
 jobs:
-  github-scripts:
+  comment:
     runs-on: ubuntu-latest
     steps:
       - name: Comment
         run: |-
-          echo "(1) inputs.env_name: ${{ inputs.env_name }}"
+          echo "(1) inputs.env_name: $(${{ inputs.env_name }})"
