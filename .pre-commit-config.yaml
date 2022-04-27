@@ -16,11 +16,11 @@ repos:
         args: [--allow-missing-credentials]
       - id: detect-private-key
 
-  - repo: https://github.com/rhysd/actionlint
-    rev: v1.6.12
-    hooks:
-      - id: actionlint
-        name: actionlint
+  # - repo: https://github.com/rhysd/actionlint
+  #   rev: v1.6.12
+  #   hooks:
+  #     - id: actionlint
+  #       name: actionlint
 
   - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.8.0
