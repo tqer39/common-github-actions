@@ -11,10 +11,17 @@ on:
         type: string
 
 jobs:
-  comment:
+  comments:
     runs-on: ubuntu-latest
     steps:
       - name: Comment
         run: |
           echo "(1) inputs.env_name: ${{ inputs.env_name }}"
           echo "(2) github.ref: ${{ github.ref }}"
+        shell: bash
+
+      - name: GitHub Script
+        uses: actions/github-script@v6
+        with:
+          script: return "inputs.env_name = ${{ inputs.env_name }}"
+          result-encoding: string
