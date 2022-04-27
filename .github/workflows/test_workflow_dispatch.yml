@@ -4,7 +4,7 @@ name: test workflow_dispatch
 on:
   workflow_dispatch:
     inputs:
-      env_name:
+      hoge:
         description: '環境名を入力して "run" してください'
         default: ''
         required: true
@@ -13,15 +13,16 @@ on:
 jobs:
   comments:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Comment
         run: |
-          echo "(1) inputs.env_name: ${{ inputs.env_name }}"
+          echo "(1) inputs.hoge: ${{ inputs.hoge }}"
           echo "(2) github.ref: ${{ github.ref }}"
         shell: bash
 
       - name: GitHub Script
         uses: actions/github-script@v6
         with:
-          script: return "inputs.env_name = ${{ inputs.env_name }}"
+          script: return "inputs.hoge = ${{ inputs.hoge }}"
           result-encoding: string
