@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - uses: kentaro-m/auto-assign-action@v1.2.1
+      - name: Auto Assign
+        uses: kentaro-m/auto-assign-action@v1.2.1
         with:
           configuration-path: .github/auto_assign.yml
