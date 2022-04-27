@@ -8,15 +8,18 @@ on:
         description: '環境名を入力して "run" してください'
         default: ''
         required: true
-    branches: [ master ]
 
 jobs:
   github-scripts:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
+      - name: Comment
+        uses: actions/github-script@v6
+        env:
+          env_name: inputs.env_name
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.createComment({
-              body: '👋 Thanks for reporting! ' + ${{ inputs.env_name }}
+              body: "hoge: ${env_name}"
             })
