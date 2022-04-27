@@ -14,12 +14,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Comment
-        uses: actions/github-script@v6
-        env:
-          env_name: inputs.env_name
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.issues.createComment({
-              body: "hoge: ${env_name}"
-            })
+        run: |-
+          echo "(1) inputs.env_name: ${{ inputs.env_name }}"
