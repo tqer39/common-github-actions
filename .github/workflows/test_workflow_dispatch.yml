@@ -18,11 +18,12 @@ jobs:
       - name: Comment
         run: |
           echo "(1) inputs.hoge: ${{ inputs.hoge }}"
-          echo "(2) github.ref: ${{ github.ref }}"
+          echo "(2) github.event.inputs.hoge: ${{ github.event.inputs.hoge }}"
+          echo "(3) github.ref: ${{ github.ref }}"
         shell: bash
 
       - name: GitHub Script
         uses: actions/github-script@v6
         with:
-          script: return "inputs.hoge = ${{ inputs.hoge }}"
+          script: return "github.event.inputs.hoge = ${{ github.event.inputs.hoge }}"
           result-encoding: string
