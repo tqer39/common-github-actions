@@ -23,7 +23,7 @@ jobs:
         shell: bash
 
       - name: GitHub Script
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: return "github.event.inputs.hoge = ${{ github.event.inputs.hoge }}"
           result-encoding: string
